@@ -1,5 +1,11 @@
+import { Container } from "@mui/material";
+
 function App() {
-  return <>App</>;
+  return (
+    <>
+      <Container>Merhaba</Container>
+    </>
+  );
 }
 
 export default App;
