@@ -6,6 +6,7 @@ const AddTodo = () => {
   const [task, setTask] = useState("");
   const handleClick = () => {
     console.log(task);
+    setTask("");
   };
   return (
     <Container>
@@ -18,7 +19,7 @@ const AddTodo = () => {
         }}
       >
         <TextField
-          focused
+          //focused
           value={task}
           onChange={(e) => setTask(e.target.value)}
           id="outlined-basic"
@@ -33,6 +34,10 @@ const AddTodo = () => {
           onClick={handleClick}
           endIcon={<AddTaskIcon />}
           sx={{ minWidth: { xs: "100%", sm: "15%" }, height: "55px", m: 1 }}
+          //!if the TextField is empty(task=false), the button is disabled
+          //any space character is also considered as empty, using trim
+          //after applying trim, if it is not empty, then diabled=false
+          disabled={!task.trim()} // trim= trimEnd + trimStart (trims both sides)
         >
           Add To the List
         </Button>
