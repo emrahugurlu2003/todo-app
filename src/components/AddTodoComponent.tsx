@@ -2,10 +2,12 @@ import { Box, Button, Container, TextField } from "@mui/material";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import { useState } from "react";
 
-const AddTodo = () => {
+const AddTodoComponent = () => {
   const [task, setTask] = useState("");
+
   const handleClick = () => {
-    console.log(task);
+    //console.log(task);
+
     setTask("");
   };
   return (
@@ -47,4 +49,4 @@ const AddTodo = () => {
   );
 };
 
-export default AddTodo;
+export default AddTodoComponent;
