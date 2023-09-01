@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, Typography } from "@mui/material";
+import AddTodo from "../components/AddTodo";
 interface ITodoType {
   todoText: string;
   isDone: boolean;
@@ -44,6 +45,7 @@ const Home = () => {
       >
         Todo App With Typescript
       </Typography>
+      <AddTodo />
     </Container>
   );
 };
