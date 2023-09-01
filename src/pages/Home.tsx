@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, Typography } from "@mui/material";
 import AddTodoComponent from "../components/AddTodoComponent";
-interface ITodoType {
+interface InterfaceTodoType {
   todoText: string;
   isDone: boolean;
   id: string | number;
@@ -11,7 +11,7 @@ interface ITodoType {
 const Home = () => {
   //!useState<ITodoType[]> ensures that todos is of type ITodoType[]
   //from the start, providing better type safety in the component.
-  const [todos, setTodos] = useState<ITodoType[]>([]);
+  const [todos, setTodos] = useState<InterfaceTodoType[]>([]);
 
   //calls getTodos method onPageLoad
   useEffect(() => {
@@ -34,6 +34,21 @@ const Home = () => {
       console.log(error);
     }
   };
+
+  type TypeAddFunction = (text: string) => Promise<void>;
+
+  //!Custom TypeScript type "TypeAddFunction", is a function type that
+  //takes a single argument "text" of type string and
+  //returns a "Promise" that doesn't return a value (void) immediately.
+  const addTodo: TypeAddFunction = async (text) => {
+    try {
+      await axios.post(ENDPOINT_URL, { task: text, isDone: false });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      getTodos();
+    }
+  };
   return (
     <Container>
       <Typography
@@ -45,7 +60,7 @@ const Home = () => {
       >
         Todo App With Typescript
       </Typography>
-      <AddTodoComponent />
+      <AddTodoComponent addTodo={addTodo} />
     </Container>
   );
 };

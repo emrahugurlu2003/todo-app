@@ -2,12 +2,21 @@ import { Box, Button, Container, TextField } from "@mui/material";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import { useState } from "react";
 
-const AddTodoComponent = () => {
+//!in Home.tsx a type is defined as follows:
+//type TypeAddFunction = (text: string) => Promise<void>;
+//!Custom "TypeAddFunction", is a function type
+//that takes a string parameter "text" and returns a promise
+//Here below using an Interface is preferred, it could be a type as well.
+interface InterfaceAddFunction {
+  addTodo: (text: string) => Promise<void>;
+}
+const AddTodoComponent = ({ addTodo }: InterfaceAddFunction) => {
   const [task, setTask] = useState("");
 
   const handleClick = () => {
     //console.log(task);
-
+    //!By prop drilling this method comes from Home.tsx
+    addTodo(task);
     setTask("");
   };
   return (
