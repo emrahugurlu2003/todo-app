@@ -21,11 +21,17 @@ const Home = () => {
   //!Reading environment variables from ".env.local"
   const ENDPOINT_URL: string = import.meta.env.VITE_APP_BASE_URL;
   const getTodos = async () => {
-    //const responseData = await axios(ENDPOINT_URL);
-    //{data: Array(3), status: 200, statusText: 'OK', headers: AxiosHeaders, config: {…}, …}
-    //const { data } = responseData;
-    //Destructuring data from the responseData
-    const { data } = await axios(ENDPOINT_URL);
+    try {
+      //const responseData = await axios(ENDPOINT_URL);
+      //{data: Array(3), status: 200, statusText: 'OK', headers: AxiosHeaders, config: {…}, …}
+      //const { data } = responseData;
+      //Destructuring data from the responseData
+      const { data } = await axios(ENDPOINT_URL);
+      //!data is stored in local state "todos"
+      setTodos(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <Container>
