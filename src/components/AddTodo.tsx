@@ -4,15 +4,27 @@ import AddTaskIcon from "@mui/icons-material/AddTask";
 const AddTodo = () => {
   return (
     <Container>
-      <Box>
+      <Box
+        sx={{
+          display: { xs: "block", sm: "flex" },
+          justifyContent: "center",
+          m: { xs: 4, sm: "auto" },
+          height: { xs: "120px", sm: "80px" },
+        }}
+      >
         <TextField
+          focused
           id="outlined-basic"
           label="Enter New Task Todo..."
           variant="outlined"
-          size="small"
-          multiline
+          color="secondary"
+          sx={{ minWidth: { xs: "100%", sm: "50%" }, height: "50px", m: 1 }}
         />
-        <Button variant="contained" size="large" endIcon={<AddTaskIcon />}>
+        <Button
+          variant="contained"
+          endIcon={<AddTaskIcon />}
+          sx={{ minWidth: { xs: "100%", sm: "15%" }, height: "55px", m: 1 }}
+        >
           Add To the List
         </Button>
       </Box>
