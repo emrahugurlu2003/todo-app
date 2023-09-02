@@ -7,9 +7,10 @@ import { useState } from "react";
 //!Custom "TypeAddFunction", is a function type
 //that takes a string parameter "text" and returns a promise
 //Here below using an Interface is preferred, it could be a type as well.
-interface InterfaceAddFunction {
-  addTodo: (text: string) => Promise<void>;
-}
+// interface InterfaceAddFunction {
+//   addTodo: (text: string) => Promise<void>;
+// }
+//!The Interface is moved into types.d.ts file
 const AddTodoComponent = ({ addTodo }: InterfaceAddFunction) => {
   const [task, setTask] = useState("");
 

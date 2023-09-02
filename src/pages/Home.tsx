@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, Typography } from "@mui/material";
 import AddTodoComponent from "../components/AddTodoComponent";
+import TodoList from "../components/TodoList";
 interface InterfaceTodoType {
   todoText: string;
   isDone: boolean;
@@ -35,11 +36,12 @@ const Home = () => {
     }
   };
 
-  type TypeAddFunction = (text: string) => Promise<void>;
-
+  //!Type definition is moved into types.d.ts file
+  //type TypeAddFunction = (text: string) => Promise<void>;
   //!Custom TypeScript type "TypeAddFunction", is a function type that
   //takes a single argument "text" of type string and
   //returns a "Promise" that doesn't return a value (void) immediately.
+  //Here above, type is preferred; an Interface could be used, as well.
   const addTodo: TypeAddFunction = async (text) => {
     try {
       await axios.post(ENDPOINT_URL, { task: text, isDone: false });
@@ -61,6 +63,7 @@ const Home = () => {
         Todo App With Typescript
       </Typography>
       <AddTodoComponent addTodo={addTodo} />
+      <TodoList />
     </Container>
   );
 };
