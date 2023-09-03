@@ -27,7 +27,7 @@ const TodoList = () => {
         <Typography color="salmon" variant="h5" align="center">
           In-Progress Todo Task Items
         </Typography>
-        <TodoListItem />
+        <TodoListItem customColor="salmon" items={[]} />
       </Grid>
       <Grid
         item
@@ -43,7 +43,7 @@ const TodoList = () => {
         <Typography color="seagreen" variant="h5" align="center">
           Completed Todo Task Items
         </Typography>
-        <TodoListItem />
+        <TodoListItem customColor="seagreen" items={[]} />
       </Grid>
     </Grid>
   );

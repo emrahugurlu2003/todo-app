@@ -21,7 +21,7 @@ const TodoListItem = ({ customColor, items }: InterfaceTodoListItemProps) => {
           sx={{ color: customColor, "&:hover": { color: "red" } }}
           //onClick={() => deleteTodo(todo.id)}
         >
-          //!If the List is empty, the DeleteIcon is not rendered
+          {/* If the List is empty, the DeleteIcon is not rendered */}
           {items.length > 0 && <DeleteIcon />}
         </IconButton>
       }
