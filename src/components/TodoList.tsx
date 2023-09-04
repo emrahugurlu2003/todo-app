@@ -1,6 +1,8 @@
 import { Grid, Typography } from "@mui/material";
-import React from "react";
 import TodoListItem from "./TodoListItem";
+
+const colorinProgressTodos = "#6200ea";
+const colorCompletedTodos = "#1b5e20";
 
 const TodoList = ({ todosObject }: { todosObject: InterfaceTodoType[] }) => {
   const inProgressTodos = todosObject.filter((item) => !item.isDone);
@@ -29,12 +31,22 @@ const TodoList = ({ todosObject }: { todosObject: InterfaceTodoType[] }) => {
           overflowY: "auto", // Add overflowY to enable vertical scrolling
         }}
       >
-        <Typography color="salmon" variant="h5" align="center">
+        <Typography color={colorinProgressTodos} variant="h5" align="center">
           In-Progress Todo Task Items
         </Typography>
-        {inProgressTodos.map((item) => (
-          <TodoListItem customColor="salmon" singleItem={item} key={item.id} />
-        ))}
+        {inProgressTodos.length > 0 ? (
+          inProgressTodos.map((item) => (
+            <TodoListItem
+              customColor={colorinProgressTodos}
+              singleItem={item}
+              key={item.id}
+            />
+          ))
+        ) : (
+          <Typography color="error" mt={3}>
+            No In-Progress todo items yet!{" "}
+          </Typography>
+        )}
       </Grid>
       {/* //!inProgressTodos
       //----------------------
@@ -53,16 +65,22 @@ const TodoList = ({ todosObject }: { todosObject: InterfaceTodoType[] }) => {
           overflowY: "auto", // Add overflowY to enable vertical scrolling
         }}
       >
-        <Typography color="seagreen" variant="h5" align="center">
+        <Typography color={colorCompletedTodos} variant="h5" align="center">
           Completed Todo Task Items
         </Typography>
-        {completedTodos.map((item) => (
-          <TodoListItem
-            customColor="seagreen"
-            singleItem={item}
-            key={item.id}
-          />
-        ))}
+        {completedTodos.length > 0 ? (
+          completedTodos.map((item) => (
+            <TodoListItem
+              customColor={colorCompletedTodos}
+              singleItem={item}
+              key={item.id}
+            />
+          ))
+        ) : (
+          <Typography color="error" mt={3}>
+            No Completed todo items yet!{" "}
+          </Typography>
+        )}
       </Grid>
     </Grid>
   );

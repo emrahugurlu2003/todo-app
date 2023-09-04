@@ -18,7 +18,7 @@ const TodoListItem = ({
   return (
     <ListItem
       disableGutters
-      sx={{ cursor: "pointer", overflow: "hidden" }}
+      sx={{ color: customColor, cursor: "pointer", overflow: "hidden" }}
       secondaryAction={
         <IconButton
           aria-label="comment"
