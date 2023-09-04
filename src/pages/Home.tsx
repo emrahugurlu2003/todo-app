@@ -48,8 +48,13 @@ const Home = () => {
   };
   const toggleTodo: TypeToggleFunction = async (todo) => {
     try {
+      // await axios.put(`${ENDPOINT_URL}/${todo.id}`, {
+      //   todoText: todo.todoText,
+      //   isDone: !todo.isDone,
+      // });
+      //!Using spread operator "...", we can accomplish the same, as above
       await axios.put(`${ENDPOINT_URL}/${todo.id}`, {
-        todoText: todo.todoText,
+        ...todo,
         isDone: !todo.isDone,
       });
     } catch (error) {
