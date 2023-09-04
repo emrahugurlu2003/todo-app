@@ -58,6 +58,16 @@ const Home = () => {
       getTodos();
     }
   };
+  const deleteTodo: TypeDeleteFunction = async (todo) => {
+    try {
+      console.log(todo.id);
+      await axios.delete(`${ENDPOINT_URL}/${todo.id}`);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      getTodos();
+    }
+  };
   return (
     <Container>
       <Typography
@@ -70,7 +80,11 @@ const Home = () => {
         Todo App With Typescript
       </Typography>
       <AddTodoComponent addTodo={addTodo} />
-      <TodoList todosObject={todos} toggleTodo={toggleTodo} />
+      <TodoList
+        todosObject={todos}
+        toggleTodo={toggleTodo}
+        deleteTodo={deleteTodo}
+      />
     </Container>
   );
 };

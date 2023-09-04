@@ -7,9 +7,11 @@ const colorCompletedTodos = "#1b5e20";
 const TodoList = ({
   todosObject,
   toggleTodo,
+  deleteTodo,
 }: {
   todosObject: InterfaceTodoType[];
   toggleTodo: TypeToggleFunction;
+  deleteTodo: TypeDeleteFunction;
 }) => {
   const inProgressTodos = todosObject.filter((item) => !item.isDone);
   const completedTodos = todosObject.filter((item) => item.isDone);
@@ -47,11 +49,12 @@ const TodoList = ({
               singleItem={item}
               key={item.id}
               toggleTodo={toggleTodo}
+              deleteTodo={deleteTodo}
             />
           ))
         ) : (
           <Typography color="error" mt={3}>
-            No In-Progress todo items yet!{" "}
+            No In-Progress items yet!{" "}
           </Typography>
         )}
       </Grid>
@@ -82,11 +85,12 @@ const TodoList = ({
               singleItem={item}
               key={item.id}
               toggleTodo={toggleTodo}
+              deleteTodo={deleteTodo}
             />
           ))
         ) : (
           <Typography color="error" mt={3}>
-            No Completed todo items yet!{" "}
+            No Completed items yet!{" "}
           </Typography>
         )}
       </Grid>

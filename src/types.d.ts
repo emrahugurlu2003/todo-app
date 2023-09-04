@@ -28,3 +28,4 @@ type TypeToggleFunction = (todoItem: InterfaceTodoType) => Promise<void>;
 interface InterfaceToggleFunction {
   addTodo: (todoItem: InterfaceTodoType) => Promise<void>;
 }
+type TypeDeleteFunction = (todoItem: InterfaceTodoType) => Promise<void>;

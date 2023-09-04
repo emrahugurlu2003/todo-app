@@ -14,7 +14,10 @@ const TodoListItem = ({
   customColor,
   singleItem,
   toggleTodo,
-}: InterfaceTodoListItemProps & { toggleTodo: TypeToggleFunction }) => {
+  deleteTodo,
+}: InterfaceTodoListItemProps & { toggleTodo: TypeToggleFunction } & {
+  deleteTodo: TypeDeleteFunction;
+}) => {
   //console.log(singleItem);
   return (
     <ListItem
@@ -24,7 +27,7 @@ const TodoListItem = ({
         <IconButton
           aria-label="comment"
           sx={{ color: customColor, "&:hover": { color: "red" } }}
-          //onClick={() => deleteTodo(todo.id)}
+          onClick={() => deleteTodo(singleItem)}
         >
           {/* If the List is empty, the DeleteIcon is not rendered */}
           {singleItem != null && <DeleteIcon />}
