@@ -9,6 +9,8 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
+import AutoDeleteIcon from "@mui/icons-material/AutoDelete";
+import PendingIcon from "@mui/icons-material/Pending";
 
 const TodoListItem = ({
   customColor,
@@ -18,6 +20,8 @@ const TodoListItem = ({
 }: InterfaceTodoListItemProps & { toggleTodo: TypeToggleFunction } & {
   deleteTodo: TypeDeleteFunction;
 }) => {
+  const [isLoading, setIsLoading] = React.useState(false);
+
   //console.log(singleItem);
   return (
     <ListItem
@@ -27,18 +31,32 @@ const TodoListItem = ({
         <IconButton
           aria-label="comment"
           sx={{ color: customColor, "&:hover": { color: "red" } }}
-          onClick={() => deleteTodo(singleItem)}
+          onClick={async () => {
+            setIsLoading(true);
+            await deleteTodo(singleItem);
+          }}
+          disabled={isLoading} // Disable the button while loading
         >
           {/* If the List is empty, the DeleteIcon is not rendered */}
-          {singleItem != null && <DeleteIcon />}
+          {singleItem != null && (isLoading ? <PendingIcon /> : <DeleteIcon />)}
         </IconButton>
       }
     >
-      <ListItemText
-        primary={singleItem.todoText}
-        onClick={() => toggleTodo(singleItem)}
-        sx={{ wordWrap: "break-word" }}
-      />
+      {isLoading ? ( //if isLoading true, onClick method is not allowed
+        <ListItemText
+          primary={singleItem.todoText}
+          sx={{ wordWrap: "break-word" }}
+        />
+      ) : (
+        <ListItemText
+          primary={singleItem.todoText}
+          sx={{ wordWrap: "break-word" }}
+          onClick={async () => {
+            setIsLoading(true);
+            await toggleTodo(singleItem);
+          }}
+        />
+      )}
     </ListItem>
   );
 };
