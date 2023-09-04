@@ -24,3 +24,7 @@ interface InterfaceTodoListItemProps {
   //In that case, the DeleteIcon is not rendered
   singleItem: InterfaceTodoType;
 }
+type TypeToggleFunction = (todoItem: InterfaceTodoType) => Promise<void>;
+interface InterfaceToggleFunction {
+  addTodo: (todoItem: InterfaceTodoType) => Promise<void>;
+}

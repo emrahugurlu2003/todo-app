@@ -4,7 +4,13 @@ import TodoListItem from "./TodoListItem";
 const colorinProgressTodos = "#6200ea";
 const colorCompletedTodos = "#1b5e20";
 
-const TodoList = ({ todosObject }: { todosObject: InterfaceTodoType[] }) => {
+const TodoList = ({
+  todosObject,
+  toggleTodo,
+}: {
+  todosObject: InterfaceTodoType[];
+  toggleTodo: TypeToggleFunction;
+}) => {
   const inProgressTodos = todosObject.filter((item) => !item.isDone);
   const completedTodos = todosObject.filter((item) => item.isDone);
   //console.log("inProgressTodos:", inProgressTodos);
@@ -40,6 +46,7 @@ const TodoList = ({ todosObject }: { todosObject: InterfaceTodoType[] }) => {
               customColor={colorinProgressTodos}
               singleItem={item}
               key={item.id}
+              toggleTodo={toggleTodo}
             />
           ))
         ) : (
@@ -74,6 +81,7 @@ const TodoList = ({ todosObject }: { todosObject: InterfaceTodoType[] }) => {
               customColor={colorCompletedTodos}
               singleItem={item}
               key={item.id}
+              toggleTodo={toggleTodo}
             />
           ))
         ) : (

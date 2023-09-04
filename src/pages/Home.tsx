@@ -46,6 +46,18 @@ const Home = () => {
       getTodos();
     }
   };
+  const toggleTodo: TypeToggleFunction = async (todo) => {
+    try {
+      await axios.put(`${ENDPOINT_URL}/${todo.id}`, {
+        todoText: todo.todoText,
+        isDone: !todo.isDone,
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      getTodos();
+    }
+  };
   return (
     <Container>
       <Typography
@@ -58,7 +70,7 @@ const Home = () => {
         Todo App With Typescript
       </Typography>
       <AddTodoComponent addTodo={addTodo} />
-      <TodoList todosObject={todos} />
+      <TodoList todosObject={todos} toggleTodo={toggleTodo} />
     </Container>
   );
 };

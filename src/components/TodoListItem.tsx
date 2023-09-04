@@ -13,7 +13,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 const TodoListItem = ({
   customColor,
   singleItem,
-}: InterfaceTodoListItemProps) => {
+  toggleTodo,
+}: InterfaceTodoListItemProps & { toggleTodo: TypeToggleFunction }) => {
   //console.log(singleItem);
   return (
     <ListItem
@@ -32,7 +33,7 @@ const TodoListItem = ({
     >
       <ListItemText
         primary={singleItem.todoText}
-        // onClick={() => toggleTodo(todo)}
+        onClick={() => toggleTodo(singleItem)}
         sx={{ wordWrap: "break-word" }}
       />
     </ListItem>
