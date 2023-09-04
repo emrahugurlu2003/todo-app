@@ -3,6 +3,7 @@ import axios from "axios";
 import { Container, Typography } from "@mui/material";
 import AddTodoComponent from "../components/AddTodoComponent";
 import TodoList from "../components/TodoList";
+import { notify } from "../helper/sweetAlert";
 
 const Home = () => {
   //!useState<ITodoType[]> ensures that todos is of type ITodoType[]
@@ -40,8 +41,10 @@ const Home = () => {
   const addTodo: TypeAddFunction = async (text) => {
     try {
       await axios.post(ENDPOINT_URL, { todoText: text, isDone: false });
+      notify("The new todo task has been created successfully!", "success");
     } catch (error) {
       console.log(error);
+      notify("Ooops!The new todo task could not been created!", "error");
     } finally {
       getTodos();
     }
@@ -57,18 +60,31 @@ const Home = () => {
         ...todo,
         isDone: !todo.isDone,
       });
+      notify("The todo task has been updated successfully!", "success");
     } catch (error) {
       console.log(error);
+      notify(
+        "Unfortunately, the new todo task could not been updated!Check for the network configration.",
+        "error"
+      );
     } finally {
       getTodos();
     }
   };
   const deleteTodo: TypeDeleteFunction = async (todo) => {
     try {
-      console.log(todo.id);
+      //console.log(todo.id);
       await axios.delete(`${ENDPOINT_URL}/${todo.id}`);
+      notify(
+        "The selected todo task has been deleted successfully!",
+        "success"
+      );
     } catch (error) {
       console.log(error);
+      notify(
+        "Unfortunately, the selected todo task could not been deleted!",
+        "error"
+      );
     } finally {
       getTodos();
     }
