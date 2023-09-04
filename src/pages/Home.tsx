@@ -3,11 +3,6 @@ import axios from "axios";
 import { Container, Typography } from "@mui/material";
 import AddTodoComponent from "../components/AddTodoComponent";
 import TodoList from "../components/TodoList";
-interface InterfaceTodoType {
-  todoText: string;
-  isDone: boolean;
-  id: string | number;
-}
 
 const Home = () => {
   //!useState<ITodoType[]> ensures that todos is of type ITodoType[]
@@ -44,7 +39,7 @@ const Home = () => {
   //Here above, type is preferred; an Interface could be used, as well.
   const addTodo: TypeAddFunction = async (text) => {
     try {
-      await axios.post(ENDPOINT_URL, { task: text, isDone: false });
+      await axios.post(ENDPOINT_URL, { todoText: text, isDone: false });
     } catch (error) {
       console.log(error);
     } finally {
@@ -63,7 +58,7 @@ const Home = () => {
         Todo App With Typescript
       </Typography>
       <AddTodoComponent addTodo={addTodo} />
-      <TodoList />
+      <TodoList todosObject={todos} />
     </Container>
   );
 };

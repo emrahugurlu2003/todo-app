@@ -1,3 +1,10 @@
+interface InterfaceTodoType {
+  //!In the DB the following keys are defined:
+  todoText: string;
+  isDone: boolean;
+  id: string | number;
+}
+
 type TypeAddFunction = (text: string) => Promise<void>;
 //!Custom TypeScript type "TypeAddFunction", is a function type that
 //takes a single argument "text" of type string and
@@ -15,5 +22,5 @@ interface InterfaceTodoListItemProps {
   customColor: string;
   //!If the List is empty, items.length = 0;
   //In that case, the DeleteIcon is not rendered
-  items: string[];
+  singleItem: InterfaceTodoType;
 }

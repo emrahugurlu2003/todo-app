@@ -10,7 +10,11 @@ import IconButton from "@mui/material/IconButton";
 import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const TodoListItem = ({ customColor, items }: InterfaceTodoListItemProps) => {
+const TodoListItem = ({
+  customColor,
+  singleItem,
+}: InterfaceTodoListItemProps) => {
+  //console.log(singleItem);
   return (
     <ListItem
       disableGutters
@@ -22,13 +26,13 @@ const TodoListItem = ({ customColor, items }: InterfaceTodoListItemProps) => {
           //onClick={() => deleteTodo(todo.id)}
         >
           {/* If the List is empty, the DeleteIcon is not rendered */}
-          {items.length > 0 && <DeleteIcon />}
+          {singleItem != null && <DeleteIcon />}
         </IconButton>
       }
     >
       <ListItemText
-        //primary={todo.todo}
-        //onClick={() => toggleTodo(todo)}
+        primary={singleItem.todoText}
+        // onClick={() => toggleTodo(todo)}
         sx={{ wordWrap: "break-word" }}
       />
     </ListItem>
