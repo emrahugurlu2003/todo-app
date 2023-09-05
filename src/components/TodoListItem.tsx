@@ -50,12 +50,13 @@ const TodoListItem = ({
     )}, ${Math.round(finalB)})`;
     return rgbString;
   }
-
+  const colorArray = ["#FFFFFF", "#e6ee9c", "#fb8c00", "#ff5722"];
   return (
     <ListItem
       disableGutters
       sx={{
         color: customColor,
+        backgroundColor: colorArray[singleItem.priority],
         overflow: "hidden",
         cursor: isLoading ? "wait" : "pointer",
       }}

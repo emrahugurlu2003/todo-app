@@ -43,7 +43,7 @@ const Home = () => {
       await axios.post(ENDPOINT_URL, {
         todoText: text,
         isDone: false,
-        priority: 4,
+        priority: 0,
       });
       notify("The new todo task has been created successfully!", "success");
     } catch (error) {
@@ -78,7 +78,7 @@ const Home = () => {
   const setTodoPriority: TypeSetPriorityFunction = async (todo, param) => {
     switch (param) {
       case "+":
-        if (todo.priority < 4) {
+        if (todo.priority < 3) {
           console.log("todo:", todo.priority, "param:", param);
           try {
             await axios.put(`${ENDPOINT_URL}/${todo.id}`, {
@@ -106,7 +106,7 @@ const Home = () => {
         }
         break;
       case "-":
-        if (todo.priority > 1) {
+        if (todo.priority > 0) {
           console.log("todo:", todo.priority, "param:", param);
           try {
             await axios.put(`${ENDPOINT_URL}/${todo.id}`, {
