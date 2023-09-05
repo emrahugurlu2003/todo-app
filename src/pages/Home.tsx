@@ -40,7 +40,11 @@ const Home = () => {
   //Here above, type is preferred; an Interface could be used, as well.
   const addTodo: TypeAddFunction = async (text) => {
     try {
-      await axios.post(ENDPOINT_URL, { todoText: text, isDone: false });
+      await axios.post(ENDPOINT_URL, {
+        todoText: text,
+        isDone: false,
+        priority: 4,
+      });
       notify("The new todo task has been created successfully!", "success");
     } catch (error) {
       console.log(error);

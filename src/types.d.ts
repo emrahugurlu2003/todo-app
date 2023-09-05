@@ -2,6 +2,7 @@ interface InterfaceTodoType {
   //!In the DB the following keys are defined:
   todoText: string;
   isDone: boolean;
+  priority: number;
   id: string | number;
 }
 
