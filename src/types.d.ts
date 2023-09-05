@@ -30,3 +30,8 @@ interface InterfaceToggleFunction {
   addTodo: (todoItem: InterfaceTodoType) => Promise<void>;
 }
 type TypeDeleteFunction = (todoItem: InterfaceTodoType) => Promise<void>;
+
+type TypeSetPriorityFunction = (
+  todoItem: InterfaceTodoType,
+  param: char
+) => Promise<void>;

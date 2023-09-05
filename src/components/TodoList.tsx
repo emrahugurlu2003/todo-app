@@ -8,10 +8,12 @@ const TodoList = ({
   todosObject,
   toggleTodo,
   deleteTodo,
+  setTodoPriority,
 }: {
   todosObject: InterfaceTodoType[];
   toggleTodo: TypeToggleFunction;
   deleteTodo: TypeDeleteFunction;
+  setTodoPriority: TypeSetPriorityFunction;
 }) => {
   const inProgressTodos = todosObject.filter((item) => !item.isDone);
   const completedTodos = todosObject.filter((item) => item.isDone);
@@ -50,6 +52,7 @@ const TodoList = ({
               key={item.id}
               toggleTodo={toggleTodo}
               deleteTodo={deleteTodo}
+              setTodoPriority={setTodoPriority}
             />
           ))
         ) : (
@@ -86,6 +89,7 @@ const TodoList = ({
               key={item.id}
               toggleTodo={toggleTodo}
               deleteTodo={deleteTodo}
+              setTodoPriority={setTodoPriority}
             />
           ))
         ) : (

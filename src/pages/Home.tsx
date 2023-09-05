@@ -68,11 +68,74 @@ const Home = () => {
     } catch (error) {
       console.log(error);
       notify(
-        "Unfortunately, the new todo task could not been updated!Check for the network configration.",
+        "Unfortunately, the todo task could not been updated!Check for the network configration.",
         "error"
       );
     } finally {
       getTodos();
+    }
+  };
+  const setTodoPriority: TypeSetPriorityFunction = async (todo, param) => {
+    switch (param) {
+      case "+":
+        if (todo.priority < 4) {
+          console.log("todo:", todo.priority, "param:", param);
+          try {
+            await axios.put(`${ENDPOINT_URL}/${todo.id}`, {
+              ...todo,
+              priority: todo.priority + 1,
+            });
+            notify(
+              "The priority of the todo task has been updated successfully!",
+              "success"
+            );
+          } catch (error) {
+            console.log(error);
+            notify(
+              "Unfortunately, the priority of the todo task could not been updated!Check for the network configration.",
+              "error"
+            );
+          } finally {
+            getTodos();
+          }
+        } else {
+          notify(
+            "The priority of the todo task is already the highest!",
+            "error"
+          );
+        }
+        break;
+      case "-":
+        if (todo.priority > 1) {
+          console.log("todo:", todo.priority, "param:", param);
+          try {
+            await axios.put(`${ENDPOINT_URL}/${todo.id}`, {
+              ...todo,
+              priority: todo.priority - 1,
+            });
+            notify(
+              "The priority of the todo task has been updated successfully!",
+              "success"
+            );
+          } catch (error) {
+            console.log(error);
+            notify(
+              "Unfortunately, the priority of the todo task could not been updated!Check for the network configration.",
+              "error"
+            );
+          } finally {
+            getTodos();
+          }
+        } else {
+          notify(
+            "The priority of the todo task is already the lowest!",
+            "error"
+          );
+        }
+        break;
+
+      default:
+        break;
     }
   };
   const deleteTodo: TypeDeleteFunction = async (todo) => {
@@ -109,6 +172,7 @@ const Home = () => {
         todosObject={todos}
         toggleTodo={toggleTodo}
         deleteTodo={deleteTodo}
+        setTodoPriority={setTodoPriority}
       />
     </Container>
   );

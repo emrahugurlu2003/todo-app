@@ -13,8 +13,10 @@ const TodoListItem = ({
   singleItem,
   toggleTodo,
   deleteTodo,
+  setTodoPriority,
 }: InterfaceTodoListItemProps & { toggleTodo: TypeToggleFunction } & {
   deleteTodo: TypeDeleteFunction;
+  setTodoPriority: TypeSetPriorityFunction;
 }) => {
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -49,10 +51,6 @@ const TodoListItem = ({
     return rgbString;
   }
 
-  //const colorString: string = "rgb(255, 0, 128)";
-  const rgbValues = hexToRgb(customColor, 1.9);
-  console.log("customColor:", customColor, "rgbValues", rgbValues); // Output: { r: 255, g: 0, b: 128 }
-  //console.log(singleItem);
   return (
     <ListItem
       disableGutters
@@ -73,12 +71,13 @@ const TodoListItem = ({
                 marginLeft: 2,
               }}
               onClick={async () => {
-                //setIsLoading(true);
-                // await deleteTodo(singleItem);
+                setIsLoading(true);
+                await setTodoPriority(singleItem, "+");
+                setIsLoading(false);
               }}
               disabled={isLoading} // Disable the button while loading
             >
-              {/* If the List is empty, the DeleteIcon is not rendered */}
+              {/* If the List is empty, the ArrowUpwardIcon is not rendered */}
               {singleItem != null &&
                 (isLoading ? <PendingIcon /> : <ArrowUpwardIcon />)}
             </IconButton>
@@ -92,12 +91,13 @@ const TodoListItem = ({
                 marginRight: -2,
               }}
               onClick={async () => {
-                //setIsLoading(true);
-                // await deleteTodo(singleItem);
+                setIsLoading(true);
+                await setTodoPriority(singleItem, "-");
+                setIsLoading(false);
               }}
               disabled={isLoading} // Disable the button while loading
             >
-              {/* If the List is empty, the DeleteIcon is not rendered */}
+              {/* If the List is empty, the ArrowDownwardIcon is not rendered */}
               {singleItem != null &&
                 (isLoading ? <PendingIcon /> : <ArrowDownwardIcon />)}
             </IconButton>
