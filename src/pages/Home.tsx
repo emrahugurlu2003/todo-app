@@ -26,7 +26,28 @@ const Home = () => {
       //Destructuring data from the responseData
       const { data } = await axios(ENDPOINT_URL);
       //!data is stored in local state "todos"
-      setTodos(data);
+
+      const categorizedData: { [key: number]: InterfaceTodoType[] } =
+        data.reduce(
+          (a: { [key: number]: InterfaceTodoType[] }, c: InterfaceTodoType) => {
+            let key = c.priority;
+            a[key] = a[key] || [];
+            a[key].push(c);
+            return a;
+          },
+          {} as { [key: number]: InterfaceTodoType[] }
+        );
+
+      // Flatten categorizedData into an array and sort in descending order
+      console.log(categorizedData);
+      const categorizedArray: InterfaceTodoType[] = Object.values(
+        categorizedData
+      )
+        .flat()
+        .sort((a, b) => b.priority - a.priority);
+      console.log(categorizedArray);
+      //setTodos(data);
+      setTodos(categorizedArray);
     } catch (error) {
       console.log(error);
     }
