@@ -26,6 +26,7 @@ interface InterfaceTodoListItemProps {
   singleItem: InterfaceTodoType;
 }
 type TypeToggleFunction = (todoItem: InterfaceTodoType) => Promise<void>;
+//The below Interface is informative only, has not been implemented anywhere
 interface InterfaceToggleFunction {
   addTodo: (todoItem: InterfaceTodoType) => Promise<void>;
 }
