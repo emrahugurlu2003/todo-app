@@ -66,10 +66,10 @@ const Home = () => {
         isDone: false,
         priority: 0,
       });
-      notify("The new todo task has been created successfully!", "success");
+      notify("The new task has been created successfully!", "success");
     } catch (error) {
       console.log(error);
-      notify("Ooops!The new todo task could not been created!", "error");
+      notify("Ooops!The new task could not been created!", "error");
     } finally {
       getTodos();
     }
@@ -85,11 +85,11 @@ const Home = () => {
         ...todo,
         isDone: !todo.isDone,
       });
-      notify("The todo task has been updated successfully!", "success");
+      notify("The task has been updated successfully!", "success");
     } catch (error) {
       console.log(error);
       notify(
-        "Unfortunately, the todo task could not been updated!Check for the network configration.",
+        "Unfortunately, the selected task could not been updated!Check for the network configration.",
         "error"
       );
     } finally {
@@ -106,14 +106,11 @@ const Home = () => {
               ...todo,
               priority: todo.priority + 1,
             });
-            notify(
-              "The priority of the todo task has been updated successfully!",
-              "success"
-            );
+            notify("The priority has been increased successfully!", "success");
           } catch (error) {
             console.log(error);
             notify(
-              "Unfortunately, the priority of the todo task could not been updated!Check for the network configration.",
+              "Unfortunately, the priority of the clicked task could not been updated!Check for the network configration.",
               "error"
             );
           } finally {
@@ -134,14 +131,11 @@ const Home = () => {
               ...todo,
               priority: todo.priority - 1,
             });
-            notify(
-              "The priority of the todo task has been updated successfully!",
-              "success"
-            );
+            notify("The priority has been decreased successfully!", "success");
           } catch (error) {
             console.log(error);
             notify(
-              "Unfortunately, the priority of the todo task could not been updated!Check for the network configration.",
+              "Unfortunately, the priority of the clicked task could not been updated!Check for the network configration.",
               "error"
             );
           } finally {
@@ -163,14 +157,11 @@ const Home = () => {
     try {
       //console.log(todo.id);
       await axios.delete(`${ENDPOINT_URL}/${todo.id}`);
-      notify(
-        "The selected todo task has been deleted successfully!",
-        "success"
-      );
+      notify("The selected item has been deleted successfully!", "success");
     } catch (error) {
       console.log(error);
       notify(
-        "Unfortunately, the selected todo task could not been deleted!",
+        "Unfortunately, the selected item could not been deleted!",
         "error"
       );
     } finally {
